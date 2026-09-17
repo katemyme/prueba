@@ -1,0 +1,102 @@
+<!DOCTYPE html>
+<html lang="es">
+<head>
+<meta charset="utf-8">
+<meta name="viewport" content="width=device-width, initial-scale=1">
+<title>Conjunto de tres viviendas adosadas — 18 × 11 m</title>
+<meta name="description" content="Planta paramétrica de tres viviendas adosadas en un terreno de 18 × 11 m: cuadro de áreas, FOS y volumen 3D en tiempo real.">
+<meta name="color-scheme" content="light">
+<meta name="theme-color" content="#DDE1DA">
+
+<meta property="og:type" content="website">
+<meta property="og:title" content="Conjunto de tres viviendas adosadas — 18 × 11 m">
+<meta property="og:description" content="Planta paramétrica de tres viviendas adosadas: cuadro de áreas, FOS y volumen 3D en tiempo real.">
+
+<link rel="icon" href="data:image/svg+xml,<svg xmlns='http://www.w3.org/2000/svg' viewBox='0 0 16 16'><rect width='16' height='16' fill='%23DDE1DA'/><rect x='2.5' y='2.5' width='11' height='11' fill='none' stroke='%231B211C'/><path d='M8 2.5v11M2.5 8H8' stroke='%231B211C'/></svg>">
+
+<link rel="preconnect" href="https://fonts.googleapis.com">
+<link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+<link href="https://fonts.googleapis.com/css2?family=Archivo:wght@400;500;700&family=IBM+Plex+Mono:wght@400;500&display=swap" rel="stylesheet">
+<link rel="stylesheet" href="assets/styles.css">
+</head>
+<body>
+
+<div class="wrap">
+<header>
+  <p class="eyebrow">Vivienda en hilera · 3 unidades · terreno 198 m²</p>
+  <h1>Conjunto de tres viviendas adosadas <span>— paramétrico</span></h1>
+</header>
+
+<div class="grid">
+  <aside class="panel">
+    <h2>Parámetros</h2>
+
+    <div class="ctrl">
+      <label for="s-retiro">Acera / retiro frontal <b id="v-retiro">1.00 m</b></label>
+      <input type="range" id="s-retiro" min="0.6" max="2" step="0.1" value="1">
+    </div>
+
+    <div class="ctrl">
+      <label for="s-patio">Patio trasero <b id="v-patio">2.00 m</b></label>
+      <input type="range" id="s-patio" min="1.2" max="3" step="0.1" value="2">
+      <p class="hint">El fondo construido es lo que sobra: 11.00 − retiro − patio.</p>
+    </div>
+
+    <div class="ctrl">
+      <label for="s-social">Fondo de la zona social <b id="v-social">3.20 m</b></label>
+      <input type="range" id="s-social" min="2.6" max="4.4" step="0.05" value="3.2">
+      <p class="hint">Lo que le quites aquí se lo das a los dormitorios.</p>
+    </div>
+
+    <div class="ctrl">
+      <label for="s-bano">Fondo del baño <b id="v-bano">1.60 m</b></label>
+      <input type="range" id="s-bano" min="1.3" max="2.4" step="0.05" value="1.6">
+    </div>
+
+    <div class="ctrl">
+      <label for="s-pas">Ancho del pasillo <b id="v-pas">0.90 m</b></label>
+      <input type="range" id="s-pas" min="0.9" max="1.3" step="0.05" value="0.9">
+    </div>
+
+    <h2 style="margin-top:1.4rem">Capas</h2>
+    <div class="toggles">
+      <button type="button" class="tg" id="t-cotas" aria-pressed="true">Cotas</button>
+      <button type="button" class="tg" id="t-mob" aria-pressed="true">Mobiliario</button>
+      <button type="button" class="tg" id="t-zonas" aria-pressed="true">Zonas</button>
+      <button type="button" class="tg" id="t-eje" aria-pressed="true">Eje sanitario</button>
+    </div>
+
+    <button type="button" class="tg" id="reset" style="margin-top:1rem;width:100%;padding:.5rem">Volver al plano original</button>
+  </aside>
+
+  <main>
+    <div class="stage">
+      <div class="stagebar" role="tablist" aria-label="Modo de representación">
+        <button type="button" class="tg" id="m-unidad" role="tab" aria-pressed="true">Vivienda tipo</button>
+        <button type="button" class="tg" id="m-conjunto" role="tab" aria-pressed="false">Conjunto 18 × 11</button>
+        <button type="button" class="tg" id="m-3d" role="tab" aria-pressed="false">Volumen 3D</button>
+      </div>
+      <div class="view on" id="view2d"><svg id="plan" role="img" aria-label="Planta arquitectónica generada"></svg></div>
+      <div class="view" id="view3d">
+        <canvas id="c3d" aria-label="Volumen tridimensional del conjunto"></canvas>
+        <p class="aviso" id="aviso3d" hidden></p>
+      </div>
+    </div>
+
+    <div class="panel" style="margin-top:1.5rem">
+      <h2>Cuadro de áreas — por vivienda</h2>
+      <table>
+        <thead><tr><th>Ambiente</th><th style="text-align:right">Dimensiones</th><th style="text-align:right">m²</th></tr></thead>
+        <tbody id="areas"></tbody>
+      </table>
+      <div id="flags"></div>
+    </div>
+
+    <dl class="cartela" id="cartela"></dl>
+  </main>
+</div>
+</div>
+
+<script src="assets/plan.js" defer></script>
+</body>
+</html>
